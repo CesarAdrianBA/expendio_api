@@ -1,11 +1,10 @@
 const ProductService = require('./product.service');
 const { success, error } = require('../../utils/response');
-const productService = require('./product.service');
 
 class ProductController {
     async create(req, res) {
         try {
-            const product = await productService.create(req.body);
+            const product = await ProductService.create(req.body);
             return success(res, product, 'Producto creado');        
         } catch (err) {
             return error(res, err.message);
@@ -38,7 +37,7 @@ class ProductController {
 
     async update(req, res) {
         try {
-            const product = await productService.update(req.params.id, req.body);
+            const product = await ProductService.update(req.params.id, req.body);
 
             if(!product) {
                 return error(res, 'Producto no encontrado', 404);
@@ -53,7 +52,7 @@ class ProductController {
 
     async delete(req, res) {
         try {
-            const deleted = await productService.delete(req.params.id);
+            const deleted = await ProductService.delete(req.params.id);
 
 
             if(!deleted) {
