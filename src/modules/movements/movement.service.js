@@ -23,7 +23,7 @@ class MovementService {
     }
 
     async delete(id) {
-        const movement = await movement.findByPk(id);
+        const movement = await Movement.findByPk(id);
 
         if (!movement) return null;
 
@@ -32,4 +32,4 @@ class MovementService {
     }
 }
 
-module.exports = MovementService();
+module.exports = new MovementService();
