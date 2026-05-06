@@ -1,5 +1,6 @@
 const express = require('express');
 const routes = require('./routes');
+require('../src//modules/purchases/associations');
 
 const app = express();
 
