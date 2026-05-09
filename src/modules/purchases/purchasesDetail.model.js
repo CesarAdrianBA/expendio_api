@@ -21,11 +21,11 @@ const PurchaseDetail = sequelize.define('DetalleCompras', {
     allowNull: false
   },
   costo_unitario: {
-    type: DataTypes.FLOAT,
+    type: DataTypes.DECIMAL(10, 2),
     allowNull: false
   },
   subtotal: {
-    type: DataTypes.FLOAT,
+    type: DataTypes.DECIMAL(10, 2),
     allowNull: false
   }
 }, {

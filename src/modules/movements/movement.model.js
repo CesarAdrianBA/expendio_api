@@ -29,12 +29,12 @@ const Movement = sequelize.define('Movimientos', {
     },
     
     costo_unitario: {
-        type: DataTypes.DECIMAL,
+        type: DataTypes.DECIMAL(10, 2),
         allowNull: true
     },
 
     precio_unitario: {
-        type: DataTypes.DECIMAL,
+        type: DataTypes.DECIMAL(10, 2),
         allowNull: true
     },
 

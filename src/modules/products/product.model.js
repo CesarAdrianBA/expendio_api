@@ -34,17 +34,17 @@ const Product = sequelize.define('Product' , {
     },
 
     costo_unitario: {
-        type:DataTypes.DECIMAL,
+        type:DataTypes.DECIMAL(10, 2),
         allowNull: true
     },
 
     precio_sugerido: {
-        type:DataTypes.DECIMAL,
+        type:DataTypes.DECIMAL(10, 2),
         allowNull: true
     },
 
     precio_actual: {
-        type: DataTypes.DECIMAL,
+        type: DataTypes.DECIMAL(10, 2),
         allowNull: false
     },
 

@@ -16,7 +16,7 @@ const Purchase = sequelize.define('Compras', {
     defaultValue: DataTypes.NOW
   },
   total: {
-    type: DataTypes.FLOAT,
+    type: DataTypes.DECIMAL(10, 2),
     defaultValue: 0
   },
   estado: {

@@ -10,7 +10,7 @@ class MovementService {
     }
 
     async findById(id) {
-        return await Movement.findByPk();
+        return await Movement.findByPk(id);
     }
 
     async update(id, data) {
