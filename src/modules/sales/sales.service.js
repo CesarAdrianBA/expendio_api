@@ -54,10 +54,15 @@ class SaleService {
         throw new Error('La venta ya esta cancelada');
       }
 
-      await sale.update({ estado: 'CANCELADA' }, { transaction });
+      await sale.update(
+        { estado: 'CANCELADA' }, 
+        { transaction }
+      );
+
       await transaction.commit();
 
       return { message: 'Venta cancelada correctamente' };
+      
     } catch (error) {
       await transaction.rollback();
       throw error;

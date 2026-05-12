@@ -5,18 +5,18 @@ class ProductController {
     async create(req, res) {
         try {
             const product = await ProductService.create(req.body);
-            return success(res, product, 'Producto creado');        
+            return success(res, product, 'Producto creado exitosamente', 201);        
         } catch (err) {
-            return error(res, err.message);
+            return error(res, err.message, 400);
         }
     }
 
     async findAll(req, res) {
         try {
             const product = await ProductService.findAll();
-            return success(res, product)
+            return success(res, product, 'Productos obtenidos', 200);
         } catch (err) {
-            return error(res, err.message);
+            return error(res, err.message, 500);
         }
     }
 
@@ -28,10 +28,10 @@ class ProductController {
                 return error(res, 'Producto no encontrado', 404);
             }
 
-            return success(res, product)
+            return success(res, product, 'Producto encontrado', 200);
 
         } catch (err) {
-            return error(res, err.message)
+            return error(res, err.message, 500);
         }
     }
 
@@ -43,10 +43,10 @@ class ProductController {
                 return error(res, 'Producto no encontrado', 404);
             }
 
-            return success(res, product, 'Cliente actualizado');
+            return success(res, product, 'Producto actualizado', 200);
 
         } catch (err) {
-            return error(res, err.message)
+            return error(res, err.message, 500)
         }
     }
 
@@ -59,10 +59,10 @@ class ProductController {
                 return error(res, 'Producto no encontrado', 404)
             }
 
-            return success(res, null, 'Producto eliminado');
+            return success(res, null, 'Producto eliminado', 200);
 
         } catch (err) {
-            return error(res, err.message);
+            return error(res, err.message, 500);
         }
     }
 

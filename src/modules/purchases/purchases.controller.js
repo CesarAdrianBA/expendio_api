@@ -7,7 +7,7 @@ class PurchaseController {
         try {
             const result = await PurchaseService.create(req.body);
 
-            return success(res, result, 'Compra creada exitosamente');
+            return success(res, result, 'Compra creada exitosamente', 201);
 
         } catch (err) {
             return error(res, err.message);
@@ -18,26 +18,21 @@ class PurchaseController {
         try {
             const { id } = req.params;
             const result = await PurchaseService.cancel(id);
-            return success(res, result, 'Compra cancelada exitosamente');
+            if (!result) {
+                return error(res, 'Compra no encontrada o ya cancelada', 404);
+            }
+            return success(res, result, 'Compra cancelada exitosamente', 200);
         } catch (err) {
-            return error(res, err.message);
+            return error(res, err.message, 400);
         }
     }
     
     async findAll(req, res) {
         try {
             const data = await PurchaseService.getAll();
-
-            res.json({
-                success: true,
-                data
-            });
-
+            return success(res, data, 'Compras obtenidas exitosamente', 200);
         } catch (error) {
-            res.status(500).json({
-                success: false,
-                message: error.message
-            });
+            return error(res, error.message, 500);
         }
     }
 
@@ -47,20 +42,19 @@ class PurchaseController {
 
             const data = await PurchaseService.getById(id);
 
-            res.json({
-                success: true,
-                data
-            });
+            if (!data) {
+                return error(res, 'Compra no encontrada', 404);
+            }
+
+            return success(res, data, 'Compra encontrada', 200);
 
         } catch (error) {
-            res.status(404).json({
-                success: false,
-                message: error.message
-            });
+            return error(res, error.message, 500);
         }
     }
 
 
 }
+
 
 module.exports = new PurchaseController();
